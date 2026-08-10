@@ -1,7 +1,5 @@
     @extends('layouts.app')
-
-    @section('title', 'Sistem Sekolah - Daftar Siswa')
-
+    
     @section('content')
         {{-- Content Start --}}
         <x-alert :type="'error'">
@@ -90,5 +88,3 @@
             </table>
         </div>
     @endsection
-
-    @include('layouts.partials.footer')

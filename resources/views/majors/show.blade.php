@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="{{ route('students.index') }}" class="text-xs uppercase tracking-[0.15em] text-slate-400 hover:text-[#A16207]">
+    <a href="{{ route('majors.index') }}" class="text-xs uppercase tracking-[0.15em] text-slate-400 hover:text-[#A16207]">
         &larr; Buku Induk
     </a>
 
@@ -11,87 +11,67 @@
 
             <div>
                 <p class="mb-1 text-[11px] uppercase tracking-[0.2em] text-[#A16207]">
-                    Lembar Siswa
+                    Lembar Jurusan
                 </p>
 
                 <h1 class="font-display text-3xl font-semibold text-[#16213A]">
-                    Budi Ariyanto
+                    Akuntansi dan Keuangan Lembaga
                 </h1>
 
                 <p class="mt-1 font-mono text-xs text-slate-500">
-                    NIS 2024001
+                    Kode: AKL
                 </p>
             </div>
 
-            <a href="{{ route('students.edit', ['id' => 1]) }}"
+            <a href="{{ route('majors.edit', $major['id']) }}"
                 class="bg-[#16213A] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">
                 Ubah
             </a>
 
         </div>
 
-        <dl class="divide-y divide-[#EFEDE6] text-sm">
+        <div class="divide-y divide-[#EFEDE6] text-sm">
 
             <div class="flex justify-between px-8 py-4">
                 <dt class="uppercase tracking-widest text-xs text-slate-400">
-                    NIS
+                    Kode Jurusan
                 </dt>
 
                 <dd class="font-medium text-[#16213A]">
-                    2024001
+                    AKL
                 </dd>
             </div>
-
             <div class="flex justify-between px-8 py-4">
                 <dt class="uppercase tracking-widest text-xs text-slate-400">
-                    Nama Lengkap
+                    Nama Jurusan
                 </dt>
 
                 <dd class="font-medium text-[#16213A]">
-                    Budi Ariyanto
+                    Akuntansi dan Keuangan Lembaga
                 </dd>
             </div>
-
             <div class="flex justify-between px-8 py-4">
                 <dt class="uppercase tracking-widest text-xs text-slate-400">
-                    Jenis Kelamin
+                    Deskripsi
                 </dt>
 
                 <dd class="font-medium text-[#16213A]">
-                    Laki-laki
+                    Jurusan yang mengkhususkan diri dalam bidang akuntansi dan keuangan di lembaga-lembaga.
                 </dd>
             </div>
 
-            <div class="flex justify-between px-8 py-4">
-                <dt class="uppercase tracking-widest text-xs text-slate-400">
-                    Jurusan
-                </dt>
 
-                <dd class="font-medium text-[#16213A]">
-                    TKJ
-                </dd>
-            </div>
 
-            <div class="flex justify-between px-8 py-4">
-                <dt class="uppercase tracking-widest text-xs text-slate-400">
-                    Kelas
-                </dt>
-
-                <dd class="font-medium text-[#16213A]">
-                    XII TKJ 1
-                </dd>
-            </div>
-
-        </dl>
+        </div>
 
         <div class="flex justify-end gap-4 border-t border-[#E5E3DB] px-8 py-5">
 
-            <a href="{{ route('students.index') }}"
+            <a href="{{ route('majors.index') }}"
                 class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">
                 Kembali
             </a>
 
-            <form action="" method="POST" onsubmit="return confirm('Hapus data siswa ini dari buku induk?')">
+            <form action="" method="POST" onsubmit="return confirm('Hapus data Guru ini dari buku induk?')">
 
                 @csrf
                 @method('DELETE')

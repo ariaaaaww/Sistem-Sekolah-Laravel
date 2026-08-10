@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
-@section('title', 'Daftar Guru')
-
 @section('content')
-    <a href="#" class="text-xs uppercase tracking-[0.15em] text-slate-400 hover:text-[#A16207]">
+    <a href="{{ route('teachers.index') }}" class="text-xs uppercase tracking-[0.15em] text-slate-400 hover:text-[#A16207]">
         &larr; Buku Induk
     </a>
 
@@ -17,15 +15,16 @@
                 </p>
 
                 <h1 class="font-display text-3xl font-semibold text-[#16213A]">
-                    Budi Ariyanto
+                    Budi
                 </h1>
 
                 <p class="mt-1 font-mono text-xs text-slate-500">
-                    NIS 2024001
+                    NIP 1987654321
                 </p>
             </div>
 
-            <a href="#" class="bg-[#16213A] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">
+            <a href="{{ route('teachers.edit', ['id' => 1]) }}"
+                class="bg-[#16213A] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">
                 Ubah
             </a>
 
@@ -35,11 +34,11 @@
 
             <div class="flex justify-between px-8 py-4">
                 <dt class="uppercase tracking-widest text-xs text-slate-400">
-                    NIS
+                    NIP
                 </dt>
 
                 <dd class="font-medium text-[#16213A]">
-                    2024001
+                    198501012024
                 </dd>
             </div>
 
@@ -49,7 +48,7 @@
                 </dt>
 
                 <dd class="font-medium text-[#16213A]">
-                    Budi Ariyanto
+                    Budi Santoso
                 </dd>
             </div>
 
@@ -65,21 +64,30 @@
 
             <div class="flex justify-between px-8 py-4">
                 <dt class="uppercase tracking-widest text-xs text-slate-400">
-                    Jurusan
+                    Mata Pelajaran
                 </dt>
 
                 <dd class="font-medium text-[#16213A]">
-                    RPL
+                    Akuntansi Dasar
                 </dd>
             </div>
 
             <div class="flex justify-between px-8 py-4">
                 <dt class="uppercase tracking-widest text-xs text-slate-400">
-                    Kelas
+                    No. Telepon
                 </dt>
 
                 <dd class="font-medium text-[#16213A]">
-                    XII AKL 1
+                    081234560001
+                </dd>
+            </div>
+            <div class="flex justify-between px-8 py-4">
+                <dt class="uppercase tracking-widest text-xs text-slate-400">
+                    Status
+                </dt>
+
+                <dd class="font-medium text-[#16213A]">
+                    Aktif
                 </dd>
             </div>
 
@@ -87,7 +95,8 @@
 
         <div class="flex justify-end gap-4 border-t border-[#E5E3DB] px-8 py-5">
 
-            <a href="" class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">
+            <a href="{{ route('teachers.index') }}"
+                class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">
                 Kembali
             </a>
 
@@ -107,5 +116,3 @@
 
     </div>
 @endsection
-
-@include('layouts.partials.footer')

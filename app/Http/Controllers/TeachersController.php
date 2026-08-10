@@ -4,40 +4,83 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class TeacherController extends Controller
+class TeachersController extends Controller
 {
     public function index()
     {
-        return "Menampilkan halaman daftar guru";
+        $title = "Sistem Sekolah - Direktori Guru";
+        $description = "Menampilkan daftar Guru yang terdaftar di sekolah";
+        $teachers = [
+            [
+                'id' => 1,
+                'nip' => '198501012024',
+                'name' => 'Budi Santoso',
+                'gender' => 'Laki-Laki',
+                'subject' => 'Akuntansi Dasar',
+                'phone' => '081234560001',
+                'status' => 'Aktif',
+            ],
+            [
+                'id' => 2,
+                'nip' => '198703152024',
+                'name' => 'Siti Aminah',
+                'gender' => 'Perempuan',
+                'subject' => 'Jaringan Komputer',
+                'phone' => '081234560002',
+                'status' => 'Aktif',
+            ]
+        ];
+
+
+        return view(
+            'teachers.index',
+            [
+                'title' => $title,
+                'description' => $description,
+                'teachers' => $teachers,
+            ]
+        );
     }
 
     public function create()
     {
-        return "Menampilkan halaman tambah guru";
+        $title = "Sistem Sekolah - Registrasi Guru";
+        $description = "Menambahkan data Guru baru";
+
+        return view('teachers.create', compact('title', 'description'));
     }
 
     public function store()
     {
-        return "Melakukan penambahan data guru";
+        return "Melakukan penambahan data Guru";
     }
 
     public function show(string $id)
     {
-        return "Menampilkan guru dengan ID: {$id}";
+        $title = "Sistem Sekolah - Rincian Guru";
+        $description = "Menampilkan detail data Guru";
+        return view('teachers.show', [
+            'title' => $title,
+            'description' => $description,
+        ]);
     }
 
     public function edit(string $id)
     {
-        return "Menampilkan halaman edit guru";
+        $title = "Sistem Sekolah - Penyuntingan Guru";
+        $description = "Memperbarui data Guru";
+
+        return view('teachers.edit', compact('title', 'description'));
     }
 
     public function update(string $id)
     {
-        return "Melakukan perubahan data guru";
+        return "Melakukan perubahan data Guru";
     }
 
     public function destroy(string $id)
     {
-        return "Menghapus data guru";
+        return "Menghapus data Guru";
     }
+
 }

@@ -13,13 +13,13 @@
                 </p>
 
                 <h1 class="font-display text-3xl font-semibold text-[#16213A]">
-                    Daftar Guru
+                    Daftar Jurusan
                 </h1>
             </div>
 
-            <a href="{{ route('teachers.create') }}"
+            <a href="{{ route('majors.create') }}"
                 class="bg-[#16213A] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">
-                Catat Guru Baru
+                Catat Jurusan Baru
             </a>
         </div>
 
@@ -28,65 +28,53 @@
                 <thead>
                     <tr class="border-b border-[#16213A] text-[11px] uppercase tracking-[0.15em] text-[#16213A]">
                         {{-- <th class="w-14 px-5 py-3.5 font-semibold">No.</th> --}}
-                        <th class="px-5 py-3.5 font-semibold">NO</th>
-                        <th class="px-5 py-3.5 font-semibold">NIP</th>
-                        <th class="px-5 py-3.5 font-semibold">Nama Guru</th>
-                        <th class="px-5 py-3.5 font-semibold">Jenis Kelamin</th>
-                        <th class="px-5 py-3.5 font-semibold">Mata Pelajaran</th>
-                        <th class="px-5 py-3.5 font-semibold">No. Telepon</th>
-                        <th class="px-5 py-3.5 font-semibold">Status</th>
+                        <th class="px-5 py-3.5 font-semibold">No</th>
+                        <th class="px-5 py-3.5 font-semibold">Kode Jurusan</th>
+                        <th class="px-5 py-3.5 font-semibold">Nama Jurusan</th>
+                        <th class="px-5 py-3.5 font-semibold">Deksripsi</th>
                         <th class="px-5 py-3.5 text-right font-semibold">Tindakan</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($teachers as $teacher)
+                    @foreach ($majors as $major)
                         <tr class="border-b border-[#EFEDE6] hover:bg-[#FAF9F5]">
                             <td class="px-5 py-4 font-display text-lg text-[#A16207]">
                                 {{ $loop->iteration }}
                             </td>
 
                             <td class="px-5 py-4 font-mono text-xs text-slate-500">
-                                {{ $teacher['nip'] }}
+                                {{ $major['code'] }}
                             </td>
 
                             <td class="px-5 py-4 font-medium text-[#16213A]">
-                                {{ $teacher['name'] }}
+                                {{ $major['name'] }}
                             </td>
                             <td class="px-5 py-4 font-medium text-[#16213A]">
-                                {{ $teacher['gender'] }}
-                            </td>
-                            <td class="px-5 py-4 font-medium text-[#16213A]">
-                                {{ $teacher['subject'] }}
-                            </td>
-                            <td class="px-5 py-4 font-medium text-[#16213A]">
-                                {{ $teacher['phone'] }}
-                            </td>
-
-                            <td class="px-5 py-4">
-                                {{ $teacher['status'] }}
+                                {{ $major['description'] }}
                             </td>
 
                             <td class="px-5 py-4">
                                 <div class="flex justify-end gap-4 text-xs font-medium">
 
-                                    <a href="{{ route('teachers.show', ['id' => 1]) }}"
+                                    <a href="{{ route('majors.show', ['major' => $major['id']]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">
                                         Lihat
                                     </a>
 
-                                    <a href="{{ route('teachers.edit', ['id' => 1]) }}"
+                                    <a href="{{ route('majors.edit', ['major' => $major['id']]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">
                                         Ubah
                                     </a>
 
-                                    <form action="{{ route('teachers.destroy', ['id' => 1]) }}" method="POST"
-                                        onsubmit="return confirm('Hapus data Guru ini dari buku induk?')">
+                                    <form action="{{ route('majors.destroy', ['major' => $major['id']]) }}" method="POST"
+                                        onsubmit="return confirm('Hapus data Jurusan ini dari buku induk?')">
+                                        @csrf
+                                        @method('DELETE')
 
                                         <button type="submit" class="text-red-700 hover:text-red-900">
                                             Hapus
                                         </button>
-
                                     </form>
 
                                 </div>

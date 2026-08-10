@@ -1,5 +1,6 @@
     @extends('layouts.app')
 
+
     @section('content')
         {{-- Content Start --}}
         <x-alert>
@@ -13,13 +14,13 @@
                 </p>
 
                 <h1 class="font-display text-3xl font-semibold text-[#16213A]">
-                    Daftar Guru
+                    Daftar Kelas
                 </h1>
             </div>
 
-            <a href="{{ route('teachers.create') }}"
+            <a href="{{ route('classes.create') }}"
                 class="bg-[#16213A] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">
-                Catat Guru Baru
+                Catat Kelas Baru
             </a>
         </div>
 
@@ -28,60 +29,49 @@
                 <thead>
                     <tr class="border-b border-[#16213A] text-[11px] uppercase tracking-[0.15em] text-[#16213A]">
                         {{-- <th class="w-14 px-5 py-3.5 font-semibold">No.</th> --}}
-                        <th class="px-5 py-3.5 font-semibold">NO</th>
-                        <th class="px-5 py-3.5 font-semibold">NIP</th>
-                        <th class="px-5 py-3.5 font-semibold">Nama Guru</th>
-                        <th class="px-5 py-3.5 font-semibold">Jenis Kelamin</th>
-                        <th class="px-5 py-3.5 font-semibold">Mata Pelajaran</th>
-                        <th class="px-5 py-3.5 font-semibold">No. Telepon</th>
-                        <th class="px-5 py-3.5 font-semibold">Status</th>
+                        <th class="px-5 py-3.5 font-semibold">No</th>
+                        <th class="px-5 py-3.5 font-semibold">Nama Kelas</th>
+                        <th class="px-5 py-3.5 font-semibold">Tingkat</th>
+                        <th class="px-5 py-3.5 font-semibold">Jurusan</th>
+                        <th class="px-5 py-3.5 font-semibold">Wali Kelas</th>
                         <th class="px-5 py-3.5 text-right font-semibold">Tindakan</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    @foreach ($teachers as $teacher)
+                    @foreach ($classes as $class)
                         <tr class="border-b border-[#EFEDE6] hover:bg-[#FAF9F5]">
                             <td class="px-5 py-4 font-display text-lg text-[#A16207]">
                                 {{ $loop->iteration }}
                             </td>
-
-                            <td class="px-5 py-4 font-mono text-xs text-slate-500">
-                                {{ $teacher['nip'] }}
-                            </td>
-
                             <td class="px-5 py-4 font-medium text-[#16213A]">
-                                {{ $teacher['name'] }}
+                                {{ $class['name'] }}
                             </td>
                             <td class="px-5 py-4 font-medium text-[#16213A]">
-                                {{ $teacher['gender'] }}
+                                {{ $class['grade'] }}
                             </td>
                             <td class="px-5 py-4 font-medium text-[#16213A]">
-                                {{ $teacher['subject'] }}
+                                {{ $class['major'] }}
                             </td>
                             <td class="px-5 py-4 font-medium text-[#16213A]">
-                                {{ $teacher['phone'] }}
-                            </td>
-
-                            <td class="px-5 py-4">
-                                {{ $teacher['status'] }}
+                                {{ $class['homeroom_teacher'] }}
                             </td>
 
                             <td class="px-5 py-4">
                                 <div class="flex justify-end gap-4 text-xs font-medium">
 
-                                    <a href="{{ route('teachers.show', ['id' => 1]) }}"
+                                    <a href="{{ route('classes.show', ['id' => 1]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">
                                         Lihat
                                     </a>
 
-                                    <a href="{{ route('teachers.edit', ['id' => 1]) }}"
+                                    <a href="{{ route('classes.edit', ['id' => 1]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">
                                         Ubah
                                     </a>
 
-                                    <form action="{{ route('teachers.destroy', ['id' => 1]) }}" method="POST"
-                                        onsubmit="return confirm('Hapus data Guru ini dari buku induk?')">
+                                    <form action="{{ route('classes.destroy', ['id' => 1]) }}" method="POST"
+                                        onsubmit="return confirm('Hapus data Kelas ini dari buku induk?')">
 
                                         <button type="submit" class="text-red-700 hover:text-red-900">
                                             Hapus

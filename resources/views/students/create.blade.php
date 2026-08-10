@@ -1,13 +1,11 @@
 @extends('layouts.app')
 
-@section('title', 'Sistem Sekolah - Catat Siswa Baru')
-
 @section('content')
     <main class="mx-auto w-full max-w-2xl flex-1 px-6 py-10">
 
         <div class="mb-8 border-b border-[#E5E3DB] pb-5">
 
-            <a href="" class="text-xs uppercase tracking-[0.15em] text-slate-400 hover:text-[#A16207]">
+            <a href="{{ route('students.index') }}" class="text-xs uppercase tracking-[0.15em] text-slate-400 hover:text-[#A16207]">
                 &larr; Buku Induk
             </a>
 
@@ -60,10 +58,10 @@
 
                 <select id="major" name="major"
                     class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
-                    <option value="">Pilih jurusan</option>
-                    <option value="">AKL</option>
-                    <option value="">TKJ</option>
-                    <option value="">BiD</option>
+                    <option value="" selected>Pilih jurusan</option>
+                    <option value="AKL">AKL</option>
+                    <option value="TKJ">TKJ</option>
+                    <option value="BiD">BiD</option>
                 </select>
             </div>
 
@@ -78,7 +76,7 @@
 
             <div class="flex justify-end gap-4 border-t border-[#EFEDE6] pt-6">
 
-                <a href="#" class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">
+                <a href="{{ route('students.index') }}" class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">
                     Batal
                 </a>
 
@@ -93,5 +91,3 @@
 
     </main>
 @endsection
-
-@include('layouts.partials.footer')
