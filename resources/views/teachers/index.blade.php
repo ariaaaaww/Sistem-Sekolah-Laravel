@@ -2,9 +2,9 @@
 
     @section('content')
         {{-- Content Start --}}
-        <x-alert>
+        {{-- <x-alert>
             Terdapat kesalahan pada data yang dimasukkan. Silakan periksa kembali dan coba lagi.
-        </x-alert>
+        </x-alert> --}}
 
         <div class="mb-8 flex items-end justify-between border-b border-[#E5E3DB] pb-5">
             <div>
@@ -64,7 +64,7 @@
                             </td>
 
                             <td class="px-5 py-4">
-                                {{ $teacher['status'] }}
+                                <x-status-badge :status="$teacher['status']" />
                             </td>
 
                             <td class="px-5 py-4">
