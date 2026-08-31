@@ -52,7 +52,7 @@
                 <select id="major_id" name="major_id"
                     class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
                     @foreach ($majors as $major)
-                        <option value="{{ $major['id'] }}" {{ $major['id']}}>
+                        <option value="{{ $major['id'] }}" @selected(($class['major_id'] ?? $class->major_id ?? null) == $major['id'])>
                             {{ $major['code'] }}
                         </option>
                     @endforeach
@@ -67,7 +67,7 @@
                 <select id="teacher_id" name="teacher_id"
                     class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
                     @foreach ($teachers as $teacher)
-                        <option value="{{ $teacher['id'] }}" {{ $teacher['id']}}>
+                        <option value="{{ $teacher['id'] }}" @selected(($class['teacher_id'] ?? $class->teacher_id ?? null) == $teacher['id'])>
                             {{ $teacher['name'] }}
                         </option>
                     @endforeach

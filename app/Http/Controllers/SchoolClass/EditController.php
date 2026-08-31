@@ -12,7 +12,7 @@ class EditController extends Controller
      */
     public function __invoke(Request $request, string $id)
     {
-        $title = "Sistem Sekolah - Penyuntingan Kelas";
+        $title = 'Sistem Sekolah - Penyuntingan Kelas';
         $teachers = [
             [
                 'id' => 1,
@@ -31,7 +31,7 @@ class EditController extends Controller
                 'subject' => 'Jaringan Komputer',
                 'phone' => '081234560002',
                 'status' => 'Tidak Aktif',
-            ]
+            ],
         ];
         $majors = [
             [
@@ -54,10 +54,19 @@ class EditController extends Controller
             ],
         ];
 
+        $class = [
+            'id' => $id,
+            'name' => 'XII AKL 1',
+            'grade' => 'XII',
+            'major_id' => 1,
+            'teacher_id' => 1,
+        ];
+
         return view('classes.edit', [
             'title' => $title,
             'teachers' => $teachers,
-            'majors' => $majors
+            'majors' => $majors,
+            'class' => $class,
         ]);
     }
 }

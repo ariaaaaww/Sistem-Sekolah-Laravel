@@ -71,7 +71,7 @@
                 Kembali
             </a>
 
-            <form action="" method="POST" onsubmit="return confirm('Hapus data Guru ini dari buku induk?')">
+            <form action="" method="POST" onsubmit="return confirm('Hapus data Jurusan ini dari buku induk?')">
 
                 @csrf
                 @method('DELETE')

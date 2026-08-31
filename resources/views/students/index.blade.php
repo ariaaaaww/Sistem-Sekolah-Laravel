@@ -2,9 +2,9 @@
     
     @section('content')
         {{-- Content Start --}}
-        <x-alert :type="'error'">
+        {{-- <x-alert :type="'error'">
             Terdapat kesalahan pada data yang dimasukkan. Silakan periksa kembali dan coba lagi.
-        </x-alert>
+        </x-alert> --}}
         <div class="mb-8 flex items-end justify-between border-b border-[#E5E3DB] pb-5">
             <div>
                 <p class="mb-1 text-[11px] uppercase tracking-[0.2em] text-[#A16207]">

@@ -8,13 +8,13 @@
         </a>
 
         <h1 class="font-display mt-2 text-3xl font-semibold text-[#16213A]">
-            Ubah Data Guru
+            Ubah Data Jurusan
         </h1>
 
         <p class="mt-1 text-sm text-slate-500">
-            Memperbarui catatan atas nama
+            Memperbarui catatan jurusan
             <span class="font-medium text-[#16213A]">
-                Budi Ariyanto
+                Akuntansi
             </span>.
         </p>
     </div>
@@ -45,18 +45,17 @@
 
             <textarea id="description" name="description"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">Program keahlian yang membekali murid dengan kompetensi pencatatan dan pelaporan keuangan.</textarea>
+        </div>
 
+        <div class="flex justify-end gap-4 border-t border-[#EFEDE6] pt-6">
+            <a href="{{ route('majors.index') }}" class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">
+                Batal
+            </a>
 
-            <div class="flex justify-end gap-4 border-t border-[#EFEDE6] pt-6">
-                <a href="{{ route('majors.index') }}" class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">
-                    Batal
-                </a>
-
-                <button type="submit"
-                    class="bg-[#16213A] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">
-                    Perbarui Catatan
-                </button>
-            </div>
-
+            <button type="submit"
+                class="bg-[#16213A] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">
+                Perbarui Catatan
+            </button>
+        </div>
     </form>
 @endsection

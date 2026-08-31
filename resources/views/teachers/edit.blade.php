@@ -58,7 +58,7 @@
                 Mata Pelajaran
             </label>
 
-            <input type="text" id="major" name="major" value="Akuntansi Dasar"
+            <input type="text" id="subject" name="subject" value="Akuntansi Dasar"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
         </div>
 

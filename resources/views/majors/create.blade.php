@@ -10,11 +10,11 @@
             </a>
 
             <h1 class="font-display mt-2 text-3xl font-semibold text-[#16213A]">
-                Catat Guru Baru
+                Catat Jurusan Baru
             </h1>
 
             <p class="mt-1 text-sm text-slate-500">
-                Isi data untuk mendaftarkan Guru ke buku induk.
+                Isi data untuk mendaftarkan Jurusan ke buku induk.
             </p>
 
         </div>
