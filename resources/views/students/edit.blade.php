@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="mb-8 border-b border-[#E5E3DB] pb-5">
-        <a href="{{ route('students.index'}}" class="text-xs uppercase tracking-[0.15em] text-slate-400 hover:text-[#A16207]">
+        <a href="{{ route('students.index') }}"
+            class="text-xs uppercase tracking-[0.15em] text-slate-400 hover:text-[#A16207]">
             &larr; Buku Induk
         </a>
 
@@ -74,7 +74,8 @@
         </div>
 
         <div class="flex justify-end gap-4 border-t border-[#EFEDE6] pt-6">
-            <a href="{{ route('students.index') }}" class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">
+            <a href="{{ route('students.index') }}"
+                class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">
                 Batal
             </a>
 
@@ -86,4 +87,3 @@
 
     </form>
 @endsection
-
