@@ -1,5 +1,5 @@
     @extends('layouts.app')
-    
+
     @section('content')
         {{-- Content Start --}}
         {{-- <x-alert :type="'error'">
@@ -36,7 +36,7 @@
                 </thead>
 
                 <tbody>
-                    @foreach ($students as $student)
+                    @forelse ($students as $student)
                         <tr class="border-b border-[#EFEDE6] hover:bg-[#FAF9F5]">
                             <td class="px-5 py-4 font-display text-lg text-[#A16207]">
                                 {{ $loop->iteration }}
@@ -61,18 +61,20 @@
                             <td class="px-5 py-4">
                                 <div class="flex justify-end gap-4 text-xs font-medium">
 
-                                    <a href="{{ route('students.show', ['id' => 1]) }}" class="text-[#16213A] hover:text-[#A16207]">
+                                    <a href="{{ route('students.show', $student) }}"
+                                        class="text-[#16213A] hover:text-[#A16207]">
                                         Lihat
                                     </a>
 
-                                    <a href="{{ route('students.edit', ['id' => 1]) }}"
+                                    <a href="{{ route('students.edit', $student) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">
                                         Ubah
                                     </a>
 
-                                    <form action="{{ route('students.destroy', ['id' => 1]) }}" method="POST"
+                                    <form action="{{ route('students.destroy', $student) }}" method="POST"
                                         onsubmit="return confirm('Hapus data siswa ini dari buku induk?')">
-
+                                        @csrf
+                                        @method('DELETE')
                                         <button type="submit" class="text-red-700 hover:text-red-900">
                                             Hapus
                                         </button>
@@ -82,7 +84,13 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="6" class="px-5 py-4 text-center text-[#A16207]">
+                                Belum ada data siswa yang dicatat.
+                            </td>
+                        </tr>
+                    @endforelse
 
                 </tbody>
             </table>

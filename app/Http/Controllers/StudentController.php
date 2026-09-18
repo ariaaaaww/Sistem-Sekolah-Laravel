@@ -2,78 +2,90 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
     public function index()
     {
-        $title = "Sistem Sekolah - Direktori Siswa";
-        $description = "Menampilkan daftar siswa yang terdaftar di sekolah";
-        $students = [
-            [
-                'id' => 1,
-                'nis' => '1001',
-                'name' => 'Andi',
-                'class' => 'XII TKJ 1',
-                'major' => 'TKJ',
-            ],
-            [
-                'id' => 2,
-                'nis' => '1002',
-                'name' => 'Budi',
-                'class' => 'XII AKL 1',
-                'major' => 'AKL',
-            ],
-        ];
+        $title = 'Sistem Sekolah - Direktori Siswa';
+        $description = 'Menampilkan daftar siswa yang terdaftar di sekolah';
+        $students = Student::select('id', 'nis', 'name', 'gender', 'class', 'major')->get();
 
-        return view('students.index', 
-        [
-            'title' => $title,
-            'description' => $description,
-            'students' => $students,
-        ]);
+        return view(
+            'students.index',
+            [
+                'title' => $title,
+                'description' => $description,
+                'students' => $students,
+            ]
+        );
     }
 
     public function create()
     {
-        $title = "Sistem Sekolah - Registrasi Siswa";
-        $description = "Menambahkan data siswa baru";
+        $title = 'Sistem Sekolah - Registrasi Siswa';
+        $description = 'Menambahkan data siswa baru';
 
         return view('students.create', compact('title', 'description'));
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        return "Melakukan penambahan data siswa";
+        // Validasi data yang diterima dari form
+        $validatedData = $request->validate([
+            'nis' => ['required', 'string', 'size:4', 'unique:students,nis'],
+            'name' => ['required', 'string', 'max:255'],
+            'gender' => ['required', 'in:Laki-laki,Perempuan'],
+            'major' => ['required', 'in:AKL,TKJ,BiD'],
+            'class' => ['required', 'string', 'max:255'],
+        ]);
+
+        Student::create($validatedData);
+
+        return redirect()->route('students.index')->with('success', 'Siswa berhasil ditambahkan.');
     }
 
-    public function show(string $id)
+    public function show(Student $student)
     {
-        $title = "Sistem Sekolah - Rincian Siswa";
-        $description = "Menampilkan detail data siswa";
+        $title = 'Sistem Sekolah - Rincian Siswa';
+        $description = 'Menampilkan detail data siswa';
+
         return view('students.show', [
             'title' => $title,
             'description' => $description,
+            'student' => $student,
         ]);
     }
 
-    public function edit(string $id)
+    public function edit(Student $student)
     {
-        $title = "Sistem Sekolah - Penyuntingan Siswa";
-        $description = "Memperbarui data siswa";
+        $title = 'Sistem Sekolah - Penyuntingan Siswa';
+        $description = 'Memperbarui data siswa';
 
-        return view('students.edit', compact('title', 'description'));
+        return view('students.edit', compact('title', 'description', 'student'));
     }
 
-    public function update(string $id)
+    public function update(Student $student, Request $request)
     {
-        return "Melakukan perubahan data siswa";
+        // Validasi data yang diterima dari form
+        $validatedData = $request->validate([
+            'nis' => ['required', 'string', 'size:4', 'unique:students,nis,' . $student->id],
+            'name' => ['required', 'string', 'max:255'],
+            'gender' => ['required', 'in:Laki-laki,Perempuan'],
+            'major' => ['required', 'in:AKL,TKJ,BiD'],
+            'class' => ['required', 'string', 'max:255'],
+        ]);
+
+        $student->update($validatedData);
+
+        return redirect()->route('students.index')->with('success', 'Siswa berhasil diperbarui.');
     }
 
-    public function destroy(string $id)
+    public function destroy(Student $student)
     {
-        return "Menghapus data siswa";
+        $student->delete();
+        return redirect()->route('students.index')->with('success', 'Data siswa berhasil dihapus.');
     }
-
 }
