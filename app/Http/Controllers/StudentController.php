@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Student\StoreRequest;
+use App\Http\Requests\Student\UpdateRequest;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -31,18 +33,13 @@ class StudentController extends Controller
         return view('students.create', compact('title', 'description'));
     }
 
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         // Validasi data yang diterima dari form
-        $validatedData = $request->validate([
-            'nis' => ['required', 'string', 'size:4', 'unique:students,nis'],
-            'name' => ['required', 'string', 'max:255'],
-            'gender' => ['required', 'in:Laki-laki,Perempuan'],
-            'major' => ['required', 'in:AKL,TKJ,BiD'],
-            'class' => ['required', 'string', 'max:255'],
-        ]);
+        $validatedRequest = $request->validated();
 
-        Student::create($validatedData);
+        // Tambah data siswa baru ke database
+        Student::create($validatedRequest);
 
         return redirect()->route('students.index')->with('success', 'Siswa berhasil ditambahkan.');
     }
@@ -67,18 +64,12 @@ class StudentController extends Controller
         return view('students.edit', compact('title', 'description', 'student'));
     }
 
-    public function update(Student $student, Request $request)
+    public function update(Student $student, UpdateRequest $request)
     {
         // Validasi data yang diterima dari form
-        $validatedData = $request->validate([
-            'nis' => ['required', 'string', 'size:4', 'unique:students,nis,' . $student->id],
-            'name' => ['required', 'string', 'max:255'],
-            'gender' => ['required', 'in:Laki-laki,Perempuan'],
-            'major' => ['required', 'in:AKL,TKJ,BiD'],
-            'class' => ['required', 'string', 'max:255'],
-        ]);
+        $validatedRequest = $request->validated();
 
-        $student->update($validatedData);
+        $student->update($validatedRequest);
 
         return redirect()->route('students.index')->with('success', 'Siswa berhasil diperbarui.');
     }
