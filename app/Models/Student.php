@@ -15,4 +15,6 @@ class Student extends Model
         'class',
         'major',
     ];
+
+    use \Illuminate\Database\Eloquent\Factories\HasFactory;
 }
