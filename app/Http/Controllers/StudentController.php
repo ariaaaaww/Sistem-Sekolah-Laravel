@@ -9,11 +9,49 @@ use Illuminate\Http\Request;
 
 class StudentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $title = 'Sistem Sekolah - Direktori Siswa';
         $description = 'Menampilkan daftar siswa yang terdaftar di sekolah';
-        $students = Student::select('id', 'nis', 'name', 'gender', 'class', 'major')->get();
+
+        $search = $request->query('search');
+        $class = $request->query('class');
+        $major = $request->query('major');
+
+        $students = Student::select('id', 'nis', 'name', 'gender', 'class', 'major')
+            ->when($search, function ($query, $search) {
+                $query->where(function ($query) use ($search) {
+                    $query->where('name', 'like', "%{$search}%")
+                        ->orWhere('nis', 'like', "%{$search}%");
+                });
+
+            })
+            ->when($class, fn($query, $class) => $query->where('class', '=', $class))
+            ->when($major, fn($query, $major) => $query->where('major', '=', $major))
+            // Menampilkan data dengan jumlah 5 id
+            ->paginate(5)
+            // Memunculkan data tanpa menghilangkan filter setelah next page
+            ->withQueryString();
+
+        $schoolClasses = [
+            'X AKL',
+            'X BiD',
+            'X TKJ 1',
+            'X TKJ 2',
+            'X TKJ 3',
+            'XI AKL',
+            'XI BiD',
+            'XI TKJ 1',
+            'XI TKJ 2',
+            'XI TKJ 3',
+            'XII AKL',
+            'XII BiD',
+            'XII TKJ 1',
+            'XII TKJ 2',
+            'XII TKJ 3'
+        ];
+
+        $majors = ['AKL', 'BiD', 'TKJ'];
 
         return view(
             'students.index',
@@ -21,6 +59,8 @@ class StudentController extends Controller
                 'title' => $title,
                 'description' => $description,
                 'students' => $students,
+                'schoolClasses' => $schoolClasses,
+                'majors' => $majors,
             ]
         );
     }

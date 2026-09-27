@@ -14,7 +14,6 @@ class UserSeeder extends Seeder
     {
         $userTeacherEmail = 'teacher@ski.sch.id';
         $userStudentEmail = 'student@ski.sch.id';
-        $userAdminEmail = 'admin@ski.sch.id';
 
         // User Teacher
         User::updateOrCreate(
@@ -38,15 +37,5 @@ class UserSeeder extends Seeder
             ]
         );
 
-        // User Admin
-        User::updateOrCreate(
-            ['email' => $userAdminEmail],
-            [
-                'name' => 'Admin',
-                // Cara hash pakai bcrypt() atau bisa juga pakai Hash::make()
-                'password' => bcrypt('admin'),
-                'role' => 'admin',
-            ]
-        );
     }
 }

@@ -22,14 +22,10 @@ Route::get('/login', [AuthController::class, 'loginView'])->name('login-view');
 Route::post('/login', [AuthController::class, 'loginPost'])->name('login-post');
 Route::get('/register', [AuthController::class, 'registerView'])->name('register-view');
 Route::post('/register', [AuthController::class, 'registerPost'])->name('register-post');
-// Route::get('/login', [AuthController::class, 'loginView'])->name('login-view')->middleware('guest');
-// Route::post('/login', [AuthController::class, 'loginPost'])->name('login-post')->middleware('guest');
-// Route::get('/register', [AuthController::class, 'registerView'])->name('register-view')->middleware('guest');
-// Route::post('/register', [AuthController::class, 'registerPost'])->name('register-post')->middleware('guest');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 // Student Managements Routes
-Route::prefix('students')->middleware(['role:student, teacher, admin', 'auth'])->name('students.')->group(function () {
+Route::prefix('students')->middleware(['role:student, teacher', 'auth'])->name('students.')->group(function () {
     Route::get('/', [StudentController::class, 'index'])->name('index');
 
     Route::get('/create', [StudentController::class, 'create'])->name('create');
@@ -45,7 +41,7 @@ Route::prefix('students')->middleware(['role:student, teacher, admin', 'auth'])-
     Route::delete('/{student}', [StudentController::class, 'destroy'])->name('destroy');
 });
 
-Route::prefix('teachers')->middleware(['role:teacher, admin', 'auth'])->name('teachers.')->group(function () {
+Route::prefix('teachers')->middleware(['role:teacher', 'auth'])->name('teachers.')->group(function () {
     Route::get('/', [TeachersController::class, 'index'])->name('index');
 
     Route::get('/create', [TeachersController::class, 'create'])->name('create');
@@ -61,7 +57,7 @@ Route::prefix('teachers')->middleware(['role:teacher, admin', 'auth'])->name('te
     Route::delete('/{id}', [TeachersController::class, 'destroy'])->name('destroy');
 });
 
-Route::prefix('classes')->middleware(['role:teacher, admin', 'auth'])->name('classes.')->group(function () {
+Route::prefix('classes')->middleware(['role:teacher', 'auth'])->name('classes.')->group(function () {
     Route::get('/', IndexController::class)->name('index');
 
     Route::get('/create', CreateController::class)->name('create');
@@ -77,4 +73,4 @@ Route::prefix('classes')->middleware(['role:teacher, admin', 'auth'])->name('cla
     Route::delete('/{id}', DestroyController::class)->name('destroy');
 });
 
-Route::resource('majors', MajorController::class)->middleware(['role:teacher, admin', 'auth']);
+Route::resource('majors', MajorController::class)->middleware(['role:teacher', 'auth']);
