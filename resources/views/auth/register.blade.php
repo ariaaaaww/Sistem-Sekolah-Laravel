@@ -20,7 +20,8 @@
             <p class="mt-1 text-sm text-slate-500">Buat akun baru untuk mulai menggunakan sistem.</p>
         </div>
 
-        <form action="{{ route('register-post') }}" method="POST" class="space-y-6 border border-[#E5E3DB] bg-white p-8">
+        <form action="{{ route('register-post') }}" method="POST"
+            class="space-y-6 border border-[#E5E3DB] bg-white p-8">
             @csrf
 
             <div>
@@ -39,7 +40,7 @@
                 <label for="email"
                     class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-[#16213A]">Email</label>
                 <input type="email" value="{{ old('email') }}" id="email" name="email"
-                    placeholder="nama@sekolah.sch.id"
+                    placeholder="Masukkan email"
                     class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm placeholder:text-slate-400 focus:border-[#A16207] focus:bg-white focus:outline-none">
                 @error('email')
                     <p class="text-red-500 pt-2">{{ $message }}</p>

@@ -25,7 +25,8 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             // Fungsi $request->session() digunakan untuk mengakses data sesi pengguna yang tersimpan di server, sedangkan regenerate() berfungsi memperbarui ID sesi tersebut demi mencegah serangan peretasan session fixation.
             $request->session()->regenerate();
-            return redirect()->route('student.index');
+
+            return redirect()->route('students.index');
         }
 
         return back()->withErrors([

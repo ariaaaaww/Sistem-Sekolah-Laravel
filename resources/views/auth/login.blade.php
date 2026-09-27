@@ -27,7 +27,7 @@
                 <label for="email"
                     class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-[#16213A]">Email</label>
                 <input type="email" value="{{ old('email') }}" id="email" name="email"
-                    placeholder="nama@sekolah.sch.id"
+                    placeholder="Masukkan email"
                     class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm placeholder:text-slate-400 focus:border-[#A16207] focus:bg-white focus:outline-none">
                 @error('email')
                     <p class="text-red-500 pt-2">{{ $message }}</p>
