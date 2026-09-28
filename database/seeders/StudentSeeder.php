@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Student;
+use Illuminate\Database\Seeder;
 
 class StudentSeeder extends Seeder
 {
@@ -53,37 +52,22 @@ class StudentSeeder extends Seeder
                 'major' => 'TKJ',
             ],
             [
-                'nis' => '1001',
-                'name' => 'Andi Haryanto',
-                'gender' => 'Laki-laki',
-                'class' => 'XII TKJ 1',
-                'major' => 'TKJ'
-            ],
-            [
-                'nis' => '1002',
-                'name' => 'Budi Santoso',
-                'gender' => 'Laki-laki',
-                'class' => 'XII TKJ 1',
-                'major' => 'TKJ'
-            ],
-            [
                 'nis' => '1003',
                 'name' => 'Citra Dewi',
                 'gender' => 'Perempuan',
                 'class' => 'XII TKJ 1',
-                'major' => 'TKJ'
+                'major' => 'TKJ',
             ],
             [
                 'nis' => '1010',
                 'name' => 'Charissa Adelaine Limanto',
                 'gender' => 'Perempuan',
                 'class' => 'XII A',
-                'major' => 'IPA'
-            ]
+                'major' => 'IPA',
+            ],
         ];
 
         Student::upsert($students, ['nis'], ['name', 'gender', 'class', 'major']);
-
 
         // Fake Data
         Student::factory()->count(11)->create();
