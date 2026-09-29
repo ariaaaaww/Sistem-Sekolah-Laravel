@@ -18,7 +18,7 @@ class StudentController extends Controller
         $class = $request->query('class');
         $major = $request->query('major');
 
-        $students = Student::select('id', 'nis', 'name', 'gender', 'class', 'major')
+        $students = Student::select('id', 'nis', 'name', 'class', 'major')
             ->when($search, function ($query, $search) {
                 $query->where(function ($query) use ($search) {
                     $query->where('name', 'like', "%{$search}%")
@@ -26,8 +26,8 @@ class StudentController extends Controller
                 });
 
             })
-            ->when($class, fn($query, $class) => $query->where('class', '=', $class))
-            ->when($major, fn($query, $major) => $query->where('major', '=', $major))
+            ->when($class, fn ($query, $class) => $query->where('class', '=', $class))
+            ->when($major, fn ($query, $major) => $query->where('major', '=', $major))
             // Menampilkan data dengan jumlah 5 id
             ->paginate(5)
             // Memunculkan data tanpa menghilangkan filter setelah next page
@@ -48,7 +48,7 @@ class StudentController extends Controller
             'XII BiD',
             'XII TKJ 1',
             'XII TKJ 2',
-            'XII TKJ 3'
+            'XII TKJ 3',
         ];
 
         $majors = ['AKL', 'BiD', 'TKJ'];
@@ -117,6 +117,7 @@ class StudentController extends Controller
     public function destroy(Student $student)
     {
         $student->delete();
+
         return redirect()->route('students.index')->with('success', 'Data siswa berhasil dihapus.');
     }
 }

@@ -48,21 +48,6 @@
         </div>
 
         <div>
-            <label for="gender" class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-[#16213A]">
-                Jenis Kelamin
-            </label>
-
-            <select id="gender" name="gender"
-                class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
-                <option value="Laki-laki" @selected(old('gender', $student->gender) === 'Laki-laki')>Laki-laki</option>
-                <option value="Perempuan" @selected(old('gender', $student->gender) === 'Perempuan')>Perempuan</option>
-            </select>
-            @error('gender')
-                <span class="text-red-500 text-xs">{{ $message }}</span>
-            @enderror
-        </div>
-
-        <div>
             <label for="major" class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-[#16213A]">
                 Jurusan
             </label>

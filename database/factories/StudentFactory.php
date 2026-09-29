@@ -22,7 +22,7 @@ class StudentFactory extends Factory
         return [
             'nis' => $this->faker->unique()->numerify('####'),
             'name' => $this->faker->name(),
-            'gender' => $this->faker->randomElement(['Laki-laki', 'Perempuan']),
+            
             'class' => $this->faker->randomElement(['XII TKJ 1', 'XII TKJ 2', 'XII TKJ 3', 'XII AKL 1', 'XII AKL 2', 'XII BiD 1', 'XII BiD 2']),
             'major' => $this->faker->randomElement(['TKJ', 'AKL', 'BiD']),
         ];
