@@ -26,8 +26,8 @@ class StudentController extends Controller
                 });
 
             })
-            ->when($class_id, fn ($query, $class_id) => $query->where('class', '=', $class_id))
-            ->when($major_id, fn ($query, $major_id) => $query->where('major', '=', $major_id))
+            ->when($class_id, fn($query, $class_id) => $query->where('class', '=', $class_id))
+            ->when($major_id, fn($query, $major_id) => $query->where('major', '=', $major_id))
             // Menampilkan data dengan jumlah 5 id
             ->paginate(5)
             // Memunculkan data tanpa menghilangkan filter setelah next page

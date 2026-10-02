@@ -2,10 +2,6 @@
 
     @section('content')
         {{-- Content Start --}}
-        {{-- <x-alert>
-            Terdapat kesalahan pada data yang dimasukkan. Silakan periksa kembali dan coba lagi.
-        </x-alert> --}}
-
         <div class="mb-8 flex items-end justify-between border-b border-[#E5E3DB] pb-5">
             <div>
                 <p class="mb-1 text-[11px] uppercase tracking-[0.2em] text-[#A16207]">
@@ -40,47 +36,47 @@
                 </thead>
 
                 <tbody>
-                    @foreach ($teachers as $teacher)
+                    @forelse ($teachers as $teacher)
                         <tr class="border-b border-[#EFEDE6] hover:bg-[#FAF9F5]">
                             <td class="px-5 py-4 font-display text-lg text-[#A16207]">
                                 {{ $loop->iteration }}
                             </td>
 
                             <td class="px-5 py-4 font-mono text-xs text-slate-500">
-                                {{ $teacher['nip'] }}
+                                {{ $teacher->nip }}
                             </td>
 
                             <td class="px-5 py-4 font-medium text-[#16213A]">
-                                {{ $teacher['name'] }}
+                                {{ $teacher->name }}
                             </td>
                             <td class="px-5 py-4 font-medium text-[#16213A]">
-                                {{ $teacher['gender'] }}
+                                {{ $teacher->gender }}
                             </td>
                             <td class="px-5 py-4 font-medium text-[#16213A]">
-                                {{ $teacher['subject'] }}
+                                {{ $teacher->subject }}
                             </td>
                             <td class="px-5 py-4 font-medium text-[#16213A]">
-                                {{ $teacher['phone'] }}
+                                {{ $teacher->phone_number }}
                             </td>
 
                             <td class="px-5 py-4">
-                                <x-status-badge :status="$teacher['status']" />
+                                <x-status-badge :status="$teacher->status" />
                             </td>
 
                             <td class="px-5 py-4">
                                 <div class="flex justify-end gap-4 text-xs font-medium">
 
-                                    <a href="{{ route('teachers.show', ['id' => 1]) }}"
+                                    <a href="{{ route('teachers.show', ['id' => $teacher->id]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">
                                         Lihat
                                     </a>
 
-                                    <a href="{{ route('teachers.edit', ['id' => 1]) }}"
+                                    <a href="{{ route('teachers.edit', ['id' => $teacher->id]) }}"
                                         class="text-[#16213A] hover:text-[#A16207]">
                                         Ubah
                                     </a>
 
-                                    <form action="{{ route('teachers.destroy', ['id' => 1]) }}" method="POST"
+                                    <form action="{{ route('teachers.destroy', ['id' => $teacher->id]) }}" method="POST"
                                         onsubmit="return confirm('Hapus data Guru ini dari buku induk?')">
 
                                         <button type="submit" class="text-red-700 hover:text-red-900">
@@ -92,7 +88,13 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="6" class="px-5 py-4 text-center text-[#A16207]">
+                                Belum ada data guru yang dicatat.
+                            </td>
+                        </tr>
+                    @endforelse
 
                 </tbody>
             </table>

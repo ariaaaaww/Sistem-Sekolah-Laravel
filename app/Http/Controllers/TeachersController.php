@@ -2,33 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Teacher\StoreRequest;
+use App\Models\Teacher;
+use Illuminate\Http\Request;
+
 class TeachersController extends Controller
 {
     public function index()
     {
         $title = 'Sistem Sekolah - Direktori Guru';
         $description = 'Menampilkan daftar Guru yang terdaftar di sekolah';
-        $teachers = [
-            [
-                'id' => 1,
-                'nip' => '198501012024',
-                'name' => 'Budi Santoso',
-                'gender' => 'Laki-Laki',
-                'subject' => 'Akuntansi Dasar',
-                'phone' => '081234560001',
-                'status' => 'Aktif',
-            ],
-            [
-                'id' => 2,
-                'nip' => '198703152024',
-                'name' => 'Siti Aminah',
-                'gender' => 'Perempuan',
-                'subject' => 'Jaringan Komputer',
-                'phone' => '081234560002',
-                'status' => 'Aktif',
-            ],
-        ];
-
+        $teachers = Teacher::select('id', 'nip', 'name', 'gender', 'subject', 'phone_number', 'status')->get();
         return view(
             'teachers.index',
             [
@@ -39,6 +23,7 @@ class TeachersController extends Controller
         );
     }
 
+
     public function create()
     {
         $title = 'Sistem Sekolah - Registrasi Guru';
@@ -47,9 +32,13 @@ class TeachersController extends Controller
         return view('teachers.create', compact('title', 'description'));
     }
 
-    public function store()
+    public function store(StoreRequest $request)
     {
-        return 'Melakukan penambahan data Guru';
+
+        $validatedRequest = $request->validated();
+        Teacher::create($validatedRequest);
+
+        return redirect()->route('teachers.index')->with('success', 'Guru berhasil ditambahkan.');
     }
 
     public function show(string $id)

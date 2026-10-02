@@ -20,24 +20,31 @@
 
         </div>
 
-        <form action="" method="POST" class="space-y-6 border border-[#E5E3DB] bg-white p-8">
-
+        <form action="{{ route('teachers.store') }}" method="POST" class="space-y-6 border border-[#E5E3DB] bg-white p-8">
+            @csrf
             <div>
                 <label for="nip" class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-[#16213A]">
                     NIP
                 </label>
 
-                <input type="text" id="nip" name="nip" placeholder="Contoh: 198501012024"
+                <input value="{{ old('nip') }}" type="text" id="nip" name="nip"
+                    placeholder="Contoh: 198501012024"
                     class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm placeholder:text-slate-400 focus:border-[#A16207] focus:bg-white focus:outline-none">
+                @error('nip')
+                    <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
+                @enderror
             </div>
-
             <div>
                 <label for="name" class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-[#16213A]">
                     Nama Lengkap
                 </label>
 
-                <input type="text" id="name" name="name" placeholder="Nama lengkap Guru"
+                <input value="{{ old('name') }}" type="text" id="name" name="name"
+                    placeholder="Nama lengkap Guru"
                     class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm placeholder:text-slate-400 focus:border-[#A16207] focus:bg-white focus:outline-none">
+                @error('name')
+                    <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
+                @enderror
             </div>
 
             <div>
@@ -47,10 +54,14 @@
 
                 <select id="gender" name="gender"
                     class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
-                    <option value="L/P" selected>Laki-laki / Perempuan</option>
-                    <option value="L">Laki-laki</option>
-                    <option value="P">Perempuan</option>
+                    <option @selected(old('gender') === 'Laki-laki/Perempuan') value="" selected>Laki-laki / Perempuan</option>
+                    <option @selected(old('gender') === 'Laki-laki') value="Laki-laki">Laki-laki</option>
+                    <option @selected(old('gender') === 'Perempuan') value="Perempuan">Perempuan</option>
                 </select>
+
+                @error('gender')
+                    <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
+                @enderror
             </div>
 
             <div>
@@ -58,16 +69,25 @@
                     Mata Pelajaran
                 </label>
 
-                <input type="text" id="subject" name="subject" placeholder="Mata pelajaran yang diampu"
+                <input value="{{ old('subject') }}" type="text" id="subject" name="subject"
+                    placeholder="Mata pelajaran yang diampu"
                     class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm placeholder:text-slate-400 focus:border-[#A16207] focus:bg-white focus:outline-none">
+                @error('subject')
+                    <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
+                @enderror
             </div>
             <div>
-                <label for="phone_number" class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-[#16213A]">
+                <label for="phone_number"
+                    class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-[#16213A]">
                     No. Telepon
                 </label>
 
-                <input type="text" id="phone_number" name="phone_number" placeholder="Contoh: 08123456789"
+                <input value="{{ old('phone_number') }}" type="text" id="phone_number" name="phone_number"
+                    placeholder="Contoh: 08123456789"
                     class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm placeholder:text-slate-400 focus:border-[#A16207] focus:bg-white focus:outline-none">
+                @error('phone_number')
+                    <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
+                @enderror
             </div>
 
             <div>
@@ -77,10 +97,13 @@
 
                 <select id="status" name="status"
                     class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
-                    <option value="Aktif/Tidak Aktif" selected>Aktif / Tidak Aktif</option>
-                    <option value="Aktif">Aktif</option>
-                    <option value="Tidak Aktif">Tidak Aktif</option>
+                    <option @selected(old('status') === 'Aktif/Tidak Aktif') value="" selected>Aktif / Tidak Aktif</option>
+                    <option @selected(old('status') === 'Aktif') value="Aktif">Aktif</option>
+                    <option @selected(old('status') === 'Tidak Aktif') value="Tidak Aktif">Tidak Aktif</option>
                 </select>
+                @error('status')
+                    <span class="mt-1 text-sm text-red-500">{{ $message }}</span>
+                @enderror
             </div>
             <div class="flex justify-end gap-4 border-t border-[#EFEDE6] pt-6">
 
@@ -100,4 +123,3 @@
 
     </main>
 @endsection
-

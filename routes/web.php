@@ -25,7 +25,8 @@ Route::post('/register', [AuthController::class, 'registerPost'])->name('registe
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
 // Student Managements Routes
-Route::prefix('students')->middleware(['role:student, teacher', 'auth'])->name('students.')->group(function () {
+// middle ware->middleware(['role:student, teacher', 'auth'])
+Route::prefix('students')->name('students.')->group(function () {
     Route::get('/', [StudentController::class, 'index'])->name('index');
 
     Route::get('/create', [StudentController::class, 'create'])->name('create');
@@ -41,7 +42,9 @@ Route::prefix('students')->middleware(['role:student, teacher', 'auth'])->name('
     Route::delete('/{student}', [StudentController::class, 'destroy'])->name('destroy');
 });
 
-Route::prefix('teachers')->middleware(['role:teacher', 'auth'])->name('teachers.')->group(function () {
+// Teacher Managements Routes
+// middleware ->middleware(['role:teacher', 'auth'])
+Route::prefix('teachers')->name('teachers.')->group(function () {
     Route::get('/', [TeachersController::class, 'index'])->name('index');
 
     Route::get('/create', [TeachersController::class, 'create'])->name('create');
@@ -57,7 +60,9 @@ Route::prefix('teachers')->middleware(['role:teacher', 'auth'])->name('teachers.
     Route::delete('/{id}', [TeachersController::class, 'destroy'])->name('destroy');
 });
 
-Route::prefix('classes')->middleware(['role:teacher', 'auth'])->name('classes.')->group(function () {
+// Class Managements Routes
+// middleware ->middleware(['role:teacher', 'auth'])
+Route::prefix('classes')->name('classes.')->group(function () {
     Route::get('/', IndexController::class)->name('index');
 
     Route::get('/create', CreateController::class)->name('create');
@@ -73,4 +78,6 @@ Route::prefix('classes')->middleware(['role:teacher', 'auth'])->name('classes.')
     Route::delete('/{id}', DestroyController::class)->name('destroy');
 });
 
-Route::resource('majors', MajorController::class)->middleware(['role:teacher', 'auth']);
+// Major Managements Routes
+// middleware ->middleware(['role:teacher', 'auth'])
+Route::resource('majors', MajorController::class);
