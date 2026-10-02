@@ -10,6 +10,8 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class MajorFactory extends Factory
 {
+    protected $model = Major::class;
+
     /**
      * Define the model's default state.
      *
@@ -17,8 +19,15 @@ class MajorFactory extends Factory
      */
     public function definition(): array
     {
-        return [
-            //
+        $major = [
+            'AKL',
+            'BiD',
+            'TKJ',
         ];
+
+        return [
+            'name' => fake()->unique()->randomElement($major),
+        ];
+
     }
 }

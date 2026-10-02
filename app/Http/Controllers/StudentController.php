@@ -15,10 +15,10 @@ class StudentController extends Controller
         $description = 'Menampilkan daftar siswa yang terdaftar di sekolah';
 
         $search = $request->query('search');
-        $class = $request->query('class');
-        $major = $request->query('major');
+        $class_id = $request->query('class');
+        $major_id = $request->query('major');
 
-        $students = Student::select('id', 'nis', 'name', 'class', 'major')
+        $students = Student::select('id', 'nis', 'name', 'gender', 'class_id', 'major_id')
             ->when($search, function ($query, $search) {
                 $query->where(function ($query) use ($search) {
                     $query->where('name', 'like', "%{$search}%")
@@ -26,8 +26,8 @@ class StudentController extends Controller
                 });
 
             })
-            ->when($class, fn ($query, $class) => $query->where('class', '=', $class))
-            ->when($major, fn ($query, $major) => $query->where('major', '=', $major))
+            ->when($class_id, fn ($query, $class_id) => $query->where('class', '=', $class_id))
+            ->when($major_id, fn ($query, $major_id) => $query->where('major', '=', $major_id))
             // Menampilkan data dengan jumlah 5 id
             ->paginate(5)
             // Memunculkan data tanpa menghilangkan filter setelah next page

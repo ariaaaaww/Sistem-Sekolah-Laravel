@@ -16,13 +16,9 @@ class DatabaseSeeder extends Seeder
     {
         // Untuk menjalankan secara menyeluruh, gunakan perintah: php artisan db:seed
         $this->call([
+            MajorSeeder::class,
+            ClassSeeder::class,
             StudentSeeder::class,
         ]);
-
-        // UserSeeder
-        $this->call([
-            UserSeeder::class,
-        ]);
-
     }
 }
