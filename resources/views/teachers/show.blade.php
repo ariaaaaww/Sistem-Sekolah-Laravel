@@ -15,15 +15,15 @@
                 </p>
 
                 <h1 class="font-display text-3xl font-semibold text-[#16213A]">
-                    Budi
+                    {{ $teacher->name }}
                 </h1>
 
                 <p class="mt-1 font-mono text-xs text-slate-500">
-                    NIP 1987654321
+                    NIP {{ $teacher->nip }}
                 </p>
             </div>
 
-            <a href="{{ route('teachers.edit', ['id' => 1]) }}"
+            <a href="{{ route('teachers.edit', $teacher->id) }}"
                 class="bg-[#16213A] px-5 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">
                 Ubah
             </a>
@@ -38,7 +38,7 @@
                 </dt>
 
                 <dd class="font-medium text-[#16213A]">
-                    198501012024
+                    {{ $teacher->nip }}
                 </dd>
             </div>
 
@@ -48,7 +48,7 @@
                 </dt>
 
                 <dd class="font-medium text-[#16213A]">
-                    Budi Santoso
+                    {{ $teacher->name }}
                 </dd>
             </div>
 
@@ -58,7 +58,7 @@
                 </dt>
 
                 <dd class="font-medium text-[#16213A]">
-                    Laki-laki
+                    {{ $teacher->gender }}
                 </dd>
             </div>
 
@@ -68,7 +68,7 @@
                 </dt>
 
                 <dd class="font-medium text-[#16213A]">
-                    Akuntansi Dasar
+                    {{ $teacher->subject }}
                 </dd>
             </div>
 
@@ -78,7 +78,7 @@
                 </dt>
 
                 <dd class="font-medium text-[#16213A]">
-                    081234560001
+                    {{ $teacher->phone_number }}
                 </dd>
             </div>
             <div class="flex justify-between px-8 py-4">
@@ -87,7 +87,7 @@
                 </dt>
 
                 <dd class="font-medium text-[#16213A]">
-                    <x-status-badge :status="$teacher['status']" />
+                    <x-status-badge :status="$teacher->status" />
                 </dd>
             </div>
 

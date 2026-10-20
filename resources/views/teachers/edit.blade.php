@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="mb-8 border-b border-[#E5E3DB] pb-5">
         <a href="{{ route('teachers.index') }}"
             class="text-xs uppercase tracking-[0.15em] text-slate-400 hover:text-[#A16207]">
@@ -15,20 +14,26 @@
         <p class="mt-1 text-sm text-slate-500">
             Memperbarui catatan atas nama
             <span class="font-medium text-[#16213A]">
-                Budi Santoso
+                {{ $teacher->name }}
             </span>.
         </p>
     </div>
 
-    <form action="" method="POST" class="space-y-6 border border-[#E5E3DB] bg-white p-8">
-
+    <form action="{{ route('teachers.update', ['teacher' => $teacher->id]) }}" method="POST"
+        class="space-y-6 border border-[#E5E3DB] bg-white p-8">
+        @csrf
+        @method('PUT')
         <div>
             <label for="nip" class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-[#16213A]">
                 NIP
             </label>
 
-            <input type="text" id="nip" name="nip" value="198501012024"
+            <input type="text" id="nip" name="nip" value="{{ $teacher->nip }}"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
+
+            @error('nip')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
         </div>
 
         <div>
@@ -36,8 +41,11 @@
                 Nama Lengkap
             </label>
 
-            <input type="text" id="name" name="name" value="Budi Santoso"
+            <input type="text" id="name" name="name" value="{{ $teacher->name }}"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
+            @error('name')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
         </div>
 
         <div>
@@ -47,10 +55,12 @@
 
             <select id="gender" name="gender"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
-
-                <option value="L">Laki-laki</option>
-                <option value="P">Perempuan</option>
+                <option @selected(old('gender', $teacher->gender) === 'Laki-laki') value="Laki-laki">Laki-laki</option>
+                <option @selected(old('gender', $teacher->gender) === 'Perempuan') value="Perempuan">Perempuan</option>
             </select>
+            @error('gender')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
         </div>
 
         <div>
@@ -58,8 +68,11 @@
                 Mata Pelajaran
             </label>
 
-            <input type="text" id="subject" name="subject" value="Akuntansi Dasar"
+            <input type="text" id="subject" name="subject" value="{{ $teacher->subject }}"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
+            @error('subject')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
         </div>
 
         <div>
@@ -67,8 +80,11 @@
                 No. Telepon
             </label>
 
-            <input type="text" id="phone_number" name="phone_number" value="081234560001"
+            <input type="text" id="phone_number" name="phone_number" value="{{ $teacher->phone_number }}"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
+            @error('phone_number')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
         </div>
 
         <div>
@@ -78,8 +94,10 @@
 
             <select id="status" name="status"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
-                <option value="Aktif" selected>Aktif</option>
-                <option value="Tidak Aktif">Tidak Aktif</option>
+                <option @selected(old('status', $teacher->status) === 'Aktif') value="Aktif">
+                    Aktif</option>
+                <option @selected(old('status', $teacher->status) === 'Tidak Aktif') value="Tidak Aktif">
+                    Tidak Aktif</option>
             </select>
         </div>
 
@@ -97,4 +115,3 @@
 
     </form>
 @endsection
-

@@ -23,7 +23,12 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'nip' => ['required', 'string', 'size:12', 'unique:teachers,nip,' . $this->teacher->id],
+            'name' => ['required', 'string', 'max:255'],
+            'gender' => ['required', 'string', 'in:Laki-laki,Perempuan'],
+            'subject' => ['required', 'string', 'max:255'],
+            'phone_number' => ['nullable', 'string', 'max:13'],
+            'status' => ['required', 'string', 'in:Aktif,Tidak Aktif'],
         ];
     }
 }

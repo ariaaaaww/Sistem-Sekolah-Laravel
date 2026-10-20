@@ -51,13 +51,13 @@ Route::prefix('teachers')->name('teachers.')->group(function () {
 
     Route::post('/store', [TeachersController::class, 'store'])->name('store');
 
-    Route::get('/{id}', [TeachersController::class, 'show'])->name('show');
+    Route::get('/{teacher}', [TeachersController::class, 'show'])->name('show');
 
-    Route::get('/{id}/edit', [TeachersController::class, 'edit'])->name('edit');
+    Route::get('/{teacher}/edit', [TeachersController::class, 'edit'])->name('edit');
 
-    Route::put('/{id}', [TeachersController::class, 'update'])->name('update');
+    Route::put('/{teacher}', [TeachersController::class, 'update'])->name('update');
 
-    Route::delete('/{id}', [TeachersController::class, 'destroy'])->name('destroy');
+    Route::delete('/{teacher}', [TeachersController::class, 'destroy'])->name('destroy');
 });
 
 // Class Managements Routes
@@ -69,13 +69,13 @@ Route::prefix('classes')->name('classes.')->group(function () {
 
     Route::post('/store', StoreController::class)->name('store');
 
-    Route::get('/{id}', ShowController::class)->name('show');
+    Route::get('/{schoolClass}', ShowController::class)->name('show');
 
-    Route::get('/{id}/edit', EditController::class)->name('edit');
+    Route::get('/{schoolClass}/edit', EditController::class)->name('edit');
 
-    Route::put('/{id}', UpdateController::class)->name('update');
+    Route::put('/{schoolClass}', UpdateController::class)->name('update');
 
-    Route::delete('/{id}', DestroyController::class)->name('destroy');
+    Route::delete('/{schoolClass}', DestroyController::class)->name('destroy');
 });
 
 // Major Managements Routes

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Teacher\StoreRequest;
+use App\Http\Requests\Teacher\UpdateRequest;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
 
@@ -41,53 +42,41 @@ class TeachersController extends Controller
         return redirect()->route('teachers.index')->with('success', 'Guru berhasil ditambahkan.');
     }
 
-    public function show(string $id)
+    public function show(Teacher $teacher)
     {
         $title = 'Sistem Sekolah - Rincian Guru';
         $description = 'Menampilkan detail data Guru';
-        $teachers = [
-            [
-                'id' => 1,
-                'nip' => '198501012024',
-                'name' => 'Budi Santoso',
-                'gender' => 'Laki-Laki',
-                'subject' => 'Akuntansi Dasar',
-                'phone' => '081234560001',
-                'status' => 'Aktif',
-            ],
-            [
-                'id' => 2,
-                'nip' => '198703152024',
-                'name' => 'Siti Aminah',
-                'gender' => 'Perempuan',
-                'subject' => 'Jaringan Komputer',
-                'phone' => '081234560002',
-                'status' => 'Aktif',
-            ],
-        ];
 
         return view('teachers.show', [
             'title' => $title,
             'description' => $description,
-            'teacher' => $teachers[array_search($id, array_column($teachers, 'id'))],
+            'teacher' => $teacher,
         ]);
     }
 
-    public function edit(string $id)
+    public function edit(Teacher $teacher)
     {
         $title = 'Sistem Sekolah - Penyuntingan Guru';
         $description = 'Memperbarui data Guru';
 
-        return view('teachers.edit', compact('title', 'description'));
+        return view('teachers.edit', [
+            'title' => $title,
+            'description' => $description,
+            'teacher' => $teacher,
+        ]);
     }
 
-    public function update(string $id)
+    public function update(Teacher $teacher, UpdateRequest $request)
     {
-        return 'Melakukan perubahan data Guru';
+        $validatedRequest = $request->validated();
+        $teacher->update($validatedRequest);
+
+        return redirect()->route('teachers.index')->with('success', 'Guru berhasil diperbarui.');
     }
 
-    public function destroy(string $id)
+    public function destroy(Teacher $teacher)
     {
-        return 'Menghapus data Guru';
+        $teacher->delete();
+        return redirect()->route('teachers.index')->with('success', 'Guru berhasil dihapus.');
     }
 }
