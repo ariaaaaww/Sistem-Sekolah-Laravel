@@ -43,7 +43,25 @@
             <input type="text" id="name" name="name" value="{{ old('name', $student->name) }}"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
             @error('name')
-                <span class="text-red-500 text-xs">{{ $message }}</span>
+                <<<<<<< HEAD <span class="text-red-500 text-xs">{{ $message }}</span>
+                    =======
+                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                @enderror
+        </div>
+
+        <div>
+            <label for="gender" class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-[#16213A]">
+                Jenis Kelamin
+            </label>
+
+            <select id="gender" name="gender"
+                class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
+                <option @selected(old('gender', $student->gender) === 'Laki-laki') value="Laki-laki">Laki-laki</option>
+                <option @selected(old('gender', $student->gender) === 'Perempuan') value="Perempuan">Perempuan</option>
+            </select>
+            @error('gender')
+                <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                >>>>>>> main
             @enderror
         </div>
 
@@ -54,38 +72,47 @@
 
             <select id="major" name="major"
                 class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
-                <option value="TKJ" @selected(old('major', $student->major) === 'TKJ')>TKJ</option>
-                <option value="AKL" @selected(old('major', $student->major) === 'AKL')>AKL</option>
-                <option value="BiD" @selected(old('major', $student->major) === 'BiD')>BiD</option>
+                <<<<<<< HEAD <option value="TKJ" @selected(old('major', $student->major) === 'TKJ')>TKJ</option>
+                    <option value="AKL" @selected(old('major', $student->major) === 'AKL')>AKL</option>
+                    <option value="BiD" @selected(old('major', $student->major) === 'BiD')>BiD</option>
             </select>
             @error('major')
                 <span class="text-red-500 text-xs">{{ $message }}</span>
-            @enderror
-        </div>
+                =======
+                <option @selected(old('major', $student->major) === 'TKJ') value="TKJ">TKJ</option>
+                <option @selected(old('major', $student->major) === 'AKL') value="AKL">AKL</option>
+                <option @selected(old('major', $student->major) === 'BiD') value="BiD">BiD</option>
+                </select>
+                @error('major')
+                    <p class="mt-1 text-xs text-red-500">{{ $message }}</p>
+                    >>>>>>> main
+                @enderror
+            </div>
 
-        <div>
-            <label for="class" class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-[#16213A]">
-                Kelas
-            </label>
+            <div>
+                <label for="class" class="mb-1.5 block text-xs font-semibold uppercase tracking-widest text-[#16213A]">
+                    Kelas
+                </label>
 
-            <input type="text" id="class" name="class" value="{{ old('class', $student->class) }}"
-                class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
-            @error('class')
-                <span class="text-red-500 text-xs">{{ $message }}</span>
-            @enderror
-        </div>
+                <input type="text" id="class" name="class" value="{{ old('class', $student->class) }}"
+                    class="w-full border border-[#D9D6CD] bg-[#FCFBF8] px-3.5 py-2.5 text-sm focus:border-[#A16207] focus:bg-white focus:outline-none">
+                @error('class')
+                    <span class="text-red-500 text-xs">{{ $message }}</span>
 
-        <div class="flex justify-end gap-4 border-t border-[#EFEDE6] pt-6">
-            <a href="{{ route('students.index') }}"
-                class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">
-                Batal
-            </a>
+                @enderror
+            </div>
 
-            <button type="submit"
-                class="bg-[#16213A] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">
-                Perbarui Catatan
-            </button>
-        </div>
+            <div class="flex justify-end gap-4 border-t border-[#EFEDE6] pt-6">
+                <a href="{{ route('students.index') }}"
+                    class="px-4 py-2.5 text-sm font-medium text-slate-500 hover:text-[#16213A]">
+                    Batal
+                </a>
 
-    </form>
-@endsection
+                <button type="submit"
+                    class="bg-[#16213A] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[#26324f]">
+                    Perbarui Catatan
+                </button>
+            </div>
+
+        </form>
+    @endsection

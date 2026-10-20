@@ -91,14 +91,8 @@ class StudentController extends Controller
 
         return view('students.show', [
             'title' => $title,
-            'description' => $description,
             'student' => $student,
         ]);
-    }
-
-    public function edit(Student $student)
-    {
-        $title = 'Sistem Sekolah - Penyuntingan Siswa';
         $description = 'Memperbarui data siswa';
 
         return view('students.edit', compact('title', 'description', 'student'));
